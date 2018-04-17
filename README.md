@@ -1,12 +1,10 @@
 # 404-found
 ## IPCVG Found
 
-## Donate
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://www.paypal.me/abhaykagalkar)
 
 
 ## Assistance
-If you want to help please ping me on Email.
+If you want to help please ping us on Email.
 ipcvg@gmail.com
 
 ## Contributors
