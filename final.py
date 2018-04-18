@@ -5,7 +5,7 @@ Created on Tue Apr 17 11:43:18 2018
 
 @author: abhay
 """
-
+import dbConnect
 import argparse
 import sys
 import os
@@ -28,6 +28,11 @@ def check_arg(args=None):
     return (results.input,results.out)
 
 if __name__ == '__main__':
+    connection=dbConnect.Connect()
+    if(connection):
+	print ("Database Connection successful!!")
+    else:   
+    	sys.exit("ERROR IN CONNECTION")
     arr=[]    
     i=0
     inputDir,outputDir= check_arg(sys.argv[1:])
@@ -38,4 +43,4 @@ if __name__ == '__main__':
     #os.system("bash "+os.getcwd()+"/preRun.sh")
     #os.system("python "+os.getcwd()+"/initial.py -i "+inputDir+" -o "+outputDir)
     #os.system("python "+os.getcwd()+"/tesseract-ocr.py -i "+inputDir+" -o "+outputDir)
-    os.system("python "+os.getcwd()+"/label_image.py -i "+inputDir+" -o "+outputDir)
+    #os.system("python "+os.getcwd()+"/label_image.py -i "+inputDir+" -o "+outputDir)
