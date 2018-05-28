@@ -15,6 +15,7 @@ def Connect():
                                  password='ipcvg',                             
                                  db='ipcvg',
                                  charset='utf8mb4',
+                                 autocommit=True, 
                                  cursorclass=pymysql.cursors.DictCursor)
         return (connect)
     except:
