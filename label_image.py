@@ -7,7 +7,7 @@ import shutil
 import os,sys
 import argparse
 
-transform = transforms.Compose([transforms.Resize(32),transforms.ToTensor()])
+transform = transforms.Compose([transforms.RandomCrop([128,128]),transforms.ToTensor()])
 
 def check_arg(args=None):
     homedir = os.environ['HOME']
@@ -24,7 +24,6 @@ def check_arg(args=None):
     return (results.input,results.out)
 
 def load_image(fileName):
-	print fileName
 	img = Image.open(fileName)
 	img = transform(img)
 	img = Variable(img.view(-1,3*128*128)).double()
@@ -40,5 +39,7 @@ for img in images:
 	image = load_image(os.path.join(inputDir,img))
 	output = net(image)
 	predictions=output.max(1)
+	print img,' predicted label:',labels[int(predictions[0])]
 	if labels[int(predictions[0])]=='1':
+		print 'Discarded'
 		shutil.move(os.path.join(inputDir,img),outputDir)

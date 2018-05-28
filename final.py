@@ -5,11 +5,10 @@ Created on Tue Apr 17 11:43:18 2018
 
 @author: abhay
 """
-import dbConnect
+
 import argparse
 import sys
 import os
-import cv2
 import shutil
 
 
@@ -28,19 +27,23 @@ def check_arg(args=None):
     return (results.input,results.out)
 
 if __name__ == '__main__':
-    connection=dbConnect.Connect()
-    if(connection):
-	print ("Database Connection successful!!")
-    else:   
-    	sys.exit("ERROR IN CONNECTION")
     arr=[]    
     i=0
     inputDir,outputDir= check_arg(sys.argv[1:])
     print("Input Directory : ",inputDir)
     print("Output Directory: ",outputDir)    
     if not os.path.exists(outputDir):
-            os.mkdir(outputDir,0755)        
-    #os.system("bash "+os.getcwd()+"/preRun.sh")
-    #os.system("python "+os.getcwd()+"/initial.py -i "+inputDir+" -o "+outputDir)
-    #os.system("python "+os.getcwd()+"/tesseract-ocr.py -i "+inputDir+" -o "+outputDir)
-    #os.system("python "+os.getcwd()+"/label_image.py -i "+inputDir+" -o "+outputDir)
+            os.mkdir(outputDir,0755)  
+    print("*****************INITIALIZING*****************************************")
+    print("\n\n *****************PRERUN*****************************************\n\n")		      
+    os.system("bash "+os.getcwd()+"/preRun.sh")
+    print("\n\n *****************INITILAL.PY*****************************************\n\n")	
+    os.system("python "+os.getcwd()+"/initial.py -i "+inputDir+" -o "+outputDir)
+    print("\n\n *****************TESSERACT.PY*****************************************\n\n")
+    os.system("python "+os.getcwd()+"/tesseract-ocr.py -i "+inputDir+" -o "+outputDir)
+    print("\n\n *****************LABEL_IMAGE.PY*****************************************\n\n")	
+    os.system("python "+os.getcwd()+"/label_image.py -i "+inputDir+" -o "+outputDir)
+    print("\n\n *****************yolotest.PY moving*****************************************\n\n")
+    #shutil.move(os.getcwd()+"/yolotest.py",os.getcwd()+"/darknet")
+    print("\n\n *****************yolo RUNNING*****************************************\n\n")
+    os.system("bash yolo.sh "+inputDir+" "+outputDir)		
