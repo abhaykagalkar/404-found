@@ -47,3 +47,4 @@ if __name__ == '__main__':
     #shutil.move(os.getcwd()+"/yolotest.py",os.getcwd()+"/darknet")
     print("\n\n *****************yolo RUNNING*****************************************\n\n")
     os.system("bash yolo.sh "+inputDir+" "+outputDir)		
+    print("Hello World!!!!0")
